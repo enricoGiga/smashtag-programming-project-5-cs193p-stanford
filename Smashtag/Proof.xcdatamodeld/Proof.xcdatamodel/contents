@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
+    <entity name="MentionM" representedClassName=".MentionM" syncable="YES">
+        <attribute name="keyword" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="mentioned" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SearchTerm" inverseName="mention" inverseEntity="SearchTerm" syncable="YES"/>
+        <relationship name="tweets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TweetM" inverseName="mentions" inverseEntity="TweetM" syncable="YES"/>
+    </entity>
+    <entity name="SearchTerm" representedClassName=".SearchTerm" syncable="YES">
+        <attribute name="count" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="keyword" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="mention" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MentionM" inverseName="mentioned" inverseEntity="MentionM" syncable="YES"/>
+    </entity>
+    <entity name="TweetM" representedClassName=".TweetM" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="mentions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MentionM" inverseName="tweets" inverseEntity="MentionM" syncable="YES"/>
+        <relationship name="tweeter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserM" inverseName="tweets" inverseEntity="UserM" syncable="YES"/>
+    </entity>
+    <entity name="UserM" representedClassName=".UserM" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="screenName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="tweets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TweetM" inverseName="tweeter" inverseEntity="TweetM" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="MentionM" positionX="115" positionY="-108" width="128" height="103"/>
+        <element name="UserM" positionX="-243" positionY="-117" width="128" height="88"/>
+        <element name="TweetM" positionX="-54" positionY="62" width="128" height="118"/>
+        <element name="SearchTerm" positionX="-108" positionY="-291" width="128" height="88"/>
+    </elements>
+</model>
